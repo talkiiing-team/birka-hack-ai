@@ -1,0 +1,22 @@
+{
+    "openapi": "3.0.1",
+    "info": { "title": "API documentation for Birka", "version": "1.0.0" },
+    "servers": [
+        { "url": "http://localhost:3000", "description": "dev" },
+        { "url": "http://api.birka.talkiiing.ru/", "description": "prod" }
+    ],
+    "paths": {
+        "/v1/predicts": {
+            "post": {
+                "responses": {
+                    "400": {
+                        "description": "missed train file"
+                    },
+                    "201": {
+                        "description": "predict request created"
+                    }
+                }
+            }
+        }
+    }
+}

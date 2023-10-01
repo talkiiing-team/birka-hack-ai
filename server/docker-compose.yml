@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  api:
+    build: './apps/api'
+    restart: always
+    ports:
+      - ${API_EXPOSE}:${API_LISTEN}
+    environment:
+      - LISTEN=${API_LISTEN}
+      - DB_URI=${API_DB_URI}
+      - ML_URL=${API_ML_URL}
+    depends_on:
+      - db
+      - ml
+
+  ml:
+    build: './ml'
+    restart: always
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DB}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:

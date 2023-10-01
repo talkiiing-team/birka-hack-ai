@@ -1,0 +1,22 @@
+---
+- name: install nginx
+  apt: name=nginx state=latest
+
+- name: start up nginx
+  service:
+    name: nginx
+    state: started
+
+- name: install certbot
+  apt:
+    name: certbot
+    state: latest
+
+- name: install certbot nginx driver
+  apt:
+    name: python3-certbot-nginx
+    state: latest
+
+- service:
+    name: nginx
+    state: restarted

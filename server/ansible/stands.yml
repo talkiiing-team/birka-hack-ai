@@ -1,0 +1,7 @@
+- name: setup stand machines
+  hosts: all
+
+  roles:
+    - { name: docker, become: true }
+    - { name: nginx, become: true }
+

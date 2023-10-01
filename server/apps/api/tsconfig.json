@@ -1,0 +1,23 @@
+{
+    "include": ["./src"],
+    "compilerOptions": {
+        "target": "ES2020",
+        "module": "CommonJS",
+        "lib": ["ES2020"],
+        "skipLibCheck": true,
+        "moduleResolution": "Node",
+        "esModuleInterop": true,
+        "strictNullChecks": true,
+        "useUnknownInCatchVariables": true,
+        "resolveJsonModule": true,
+        "types": ["node"],
+
+        "strict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noFallthroughCasesInSwitch": true,
+
+        "baseUrl": ".",
+        "rootDir": "./"
+    }
+}

@@ -1,0 +1,27 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1696109333275,
+      "tag": "0000_powerful_iceman",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1696110854144,
+      "tag": "0001_calm_expediter",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1696116607996,
+      "tag": "0002_sour_legion",
+      "breakpoints": true
+    }
+  ]
+}

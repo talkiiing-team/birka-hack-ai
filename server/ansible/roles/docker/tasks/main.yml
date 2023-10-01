@@ -1,0 +1,61 @@
+---
+- name: install required system packages
+  apt: name={{ item }} state=latest update_cache=yes
+  loop:
+    [
+      "ca-certificates",
+      "curl",
+      "gnupg",
+      "apt-transport-https",
+      "software-properties-common",
+    ]
+
+- name: add docker gpg
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: add docker apt repo
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable
+    state: present
+
+- name: install docker packages
+  apt: name={{ item }} state=latest update_cache=yes
+  loop:
+    [
+      "docker-ce",
+      "docker-ce-cli",
+      "containerd.io",
+      "docker-buildx-plugin",
+      "docker-compose-plugin",
+    ]
+
+- name: add users to docker group
+  user:
+    name: "{{ item }}"
+    groups: docker
+    append: true
+  with_items: "{{ docker_users }}"
+
+- name: start docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: "test: pull hello world"
+  docker_image:
+    name: "hello-world"
+    source: pull
+
+- name: "test: start hello world"
+  docker_container:
+    name: "hello-world"
+    image: "hello-world"
+    state: present
+
+- name: "test: stop hello world"
+  docker_container:
+    name: "hello-world"
+    state: stopped
